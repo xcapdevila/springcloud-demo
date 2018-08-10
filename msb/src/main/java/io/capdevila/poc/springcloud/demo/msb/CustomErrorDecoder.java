@@ -17,9 +17,8 @@ public class CustomErrorDecoder implements ErrorDecoder {
 			log.error("Client error");
 		} else if (response.status() >= 500 && response.status() <= 599) {
 			log.error("Server error");
-		} else {
-			log.error("No error?");
 		}
+		/** Custom exceptions should be handled nicely as Feign does*/
 		return errorStatus(methodKey, response);
 	}
 

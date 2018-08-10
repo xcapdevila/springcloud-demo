@@ -2,6 +2,8 @@ package io.capdevila.poc.springcloud.demo.msa;
 
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController("/")
@@ -15,8 +17,32 @@ public class MsaResource {
 
 	@GetMapping
 	public String get(@RequestParam(name = "propKey", defaultValue = "spring.application.name") String propKey) {
+		return getResponse(HttpMethod.GET.name(), propKey);
+	}
+
+	@GetMapping("timeout")
+	public String getTimeout(@RequestParam(name = "propKey", defaultValue = "spring.application.name") String propKey) {
+		try {
+			Thread.sleep(120_000);
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+		}
+		return getResponse(HttpMethod.GET.name(), propKey);
+	}
+
+	@GetMapping("exception")
+	public String getException(@RequestParam(name = "propKey", defaultValue = "spring.application.name") String propKey) {
 		throw new RuntimeException(propKey);
-//		return getResponse(HttpMethod.GET.name(), propKey);
+	}
+
+	@GetMapping("notFound")
+	public ResponseEntity<String> getNotFound(@RequestParam(name = "propKey", defaultValue = "spring.application.name") String propKey) {
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+	}
+
+	@GetMapping("unauthorized")
+	public ResponseEntity<String> getUnauthorized(@RequestParam(name = "propKey", defaultValue = "spring.application.name") String propKey) {
+		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 	}
 
 	@PostMapping("{propKey}")
