@@ -1,15 +1,15 @@
-package io.capdevila.poc.springcloud.demo.msa;
+package io.capdevila.poc.springcloud.demo.msb;
 
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.bind.annotation.*;
 
-@RestController("/")
-public class MsaResource {
+@RestController
+public class MsbResource {
 
 	private final Environment environment;
 
-	public MsaResource(Environment environment) {
+	public MsbResource(Environment environment) {
 		this.environment = environment;
 	}
 
