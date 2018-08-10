@@ -15,7 +15,8 @@ public class MsaResource {
 
 	@GetMapping
 	public String get(@RequestParam(name = "propKey", defaultValue = "spring.application.name") String propKey) {
-		return getResponse(HttpMethod.GET.name(), propKey);
+		throw new RuntimeException(propKey);
+//		return getResponse(HttpMethod.GET.name(), propKey);
 	}
 
 	@PostMapping("{propKey}")
