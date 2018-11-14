@@ -8,9 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.net.SocketException;
-import java.net.SocketTimeoutException;
-
 @FeignClient(name = "springcloud-demo-msa", url = "localhost:9001", configuration = FeignConfig.class) //decode404
 //@RibbonClient(name = "springcloud-demo-msa")
 public interface MsaProxy {

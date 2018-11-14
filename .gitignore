@@ -23,3 +23,7 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+msa/src/main/resources/static/
+msa/src/main/resources/templates/
+msb/src/main/resources/static/
+msb/src/main/resources/templates/

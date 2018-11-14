@@ -9,23 +9,21 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class FeignConfig {
 
-	/**
-	 * This the default behaviour:
-	 *
-	 * @return ErrorDecoder
-	 * @Bean public ErrorDecoder feignErrorDecoder() {
-	 * return new feign.codec.ErrorDecoder.Default();
-	 * }
-	 */
-	@Bean
-	public ErrorDecoder feignErrorDecoder() {
-		return new CustomErrorDecoder();
-	}
+  /**
+   * This the default behaviour:
+   *
+   * @return ErrorDecoder
+   * @Bean public ErrorDecoder feignErrorDecoder() { return new feign.codec.ErrorDecoder.Default(); }
+   */
+  @Bean
+  public ErrorDecoder feignErrorDecoder() {
+    return new CustomErrorDecoder();
+  }
 
-	@Bean
-	public Request.Options requestOptions(@Value("${custom.feign.connect.timeout:2000}") int connectTimeoutMillis,
-			@Value("${custom.feign.read.timeout:5000}") int readTimeoutMillis) {
-		return new Request.Options(connectTimeoutMillis, readTimeoutMillis);
-	}
+  @Bean
+  public Request.Options requestOptions(@Value("${custom.feign.connect.timeout:2000}") int connectTimeoutMillis,
+      @Value("${custom.feign.read.timeout:5000}") int readTimeoutMillis) {
+    return new Request.Options(connectTimeoutMillis, readTimeoutMillis);
+  }
 
 }
